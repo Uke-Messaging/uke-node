@@ -4186,7 +4186,7 @@ dependencies = [
 [[package]]
 name = "pallet-uke"
 version = "4.0.0-dev"
-source = "git+https://github.com/Uke-Messaging/uke-pallet.git?branch=main#a807812227dded2b66b19b1aadb71173bf5d859a"
+source = "git+https://github.com/Uke-Messaging/uke-pallet.git?branch=m1-delivery#a90d8ab95747c7934423a1b1f1f009f4b21cf90d"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
