@@ -6,6 +6,9 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
+
+pub use pallet_uke;
+
 use pallet_grandpa::{
 	fg_primitives, AuthorityId as GrandpaId, AuthorityList as GrandpaAuthorityList,
 };
@@ -45,8 +48,6 @@ use pallet_transaction_payment::{ConstFeeMultiplier, CurrencyAdapter, Multiplier
 pub use sp_runtime::BuildStorage;
 pub use sp_runtime::{Perbill, Permill};
 
-/// Import the template pallet.
-pub use pallet_template;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -273,9 +274,12 @@ impl pallet_sudo::Config for Runtime {
 	type RuntimeCall = RuntimeCall;
 }
 
-/// Configure the pallet-template in pallets/template.
-impl pallet_template::Config for Runtime {
+// Implement the config
+impl pallet_uke::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
+	type MaxUsernameLength = ConstU32<16>;
+	type MaxConvoIdLength = ConstU32<64>;
+	type WeightInfo = pallet_uke::weights::PalletWeight<Runtime>;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -294,8 +298,7 @@ construct_runtime!(
 		Balances: pallet_balances,
 		TransactionPayment: pallet_transaction_payment,
 		Sudo: pallet_sudo,
-		// Include the custom logic from the pallet-template in the runtime.
-		TemplateModule: pallet_template,
+		Uke: pallet_uke,
 	}
 );
 
@@ -342,7 +345,7 @@ mod benches {
 		[frame_system, SystemBench::<Runtime>]
 		[pallet_balances, Balances]
 		[pallet_timestamp, Timestamp]
-		[pallet_template, TemplateModule]
+		[pallet_uke, Uke]
 	);
 }
 

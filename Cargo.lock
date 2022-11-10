@@ -3697,6 +3697,7 @@ dependencies = [
  "pallet-timestamp",
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
+ "pallet-uke",
  "parity-scale-codec",
  "scale-info",
  "sp-api",
@@ -4045,6 +4046,19 @@ dependencies = [
  "parity-scale-codec",
  "sp-api",
  "sp-runtime",
+]
+
+[[package]]
+name = "pallet-uke"
+version = "4.0.0-dev"
+source = "git+https://github.com/Uke-Messaging/uke-pallet.git?branch=main#654cac23ec0d2cfe9fb15e5a89e94caf339e1150"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-std",
 ]
 
 [[package]]
